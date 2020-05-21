@@ -1,0 +1,21 @@
+{
+  "name": "web-lab08",
+  "version": "1.0.0",
+  "description": "Lab 08 of web programming.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "web-lab08"
+  },
+  "keywords": [
+    "js",
+    "web",
+    "lab",
+    "8"
+  ],
+  "author": "Tekerey",
+  "license": "ISC"
+}
