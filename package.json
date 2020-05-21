@@ -4,7 +4,8 @@
   "description": "Lab 08 of web programming.",
   "main": "main.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,10 @@
       "@babel/env",
       "@babel/preset-react"
     ]
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21"
   }
 }
