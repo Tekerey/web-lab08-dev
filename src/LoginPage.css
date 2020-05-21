@@ -1,0 +1,54 @@
+.LoginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/login_back.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.LoginPage form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px 0;
+    border: 10px solid grey;
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+.FormBody {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+}
+
+.FormBody button {
+    color: white;
+    background: rgb(0,212,255);
+    background: linear-gradient(328deg, rgba(0,212,255,1) 0%, rgba(1,91,130,1) 50%, rgba(0,212,255,1) 98%);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    box-shadow: 0 1px 2px 1px black;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.FormBody button:hover {
+    filter: brightness(0.8);
+}
+
+.FormBody button:active {
+    filter: brightness(1.1);
+    box-shadow: none;
+}

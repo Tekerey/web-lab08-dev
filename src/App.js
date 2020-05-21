@@ -1,17 +1,24 @@
 import React from 'react';
 import {hot} from "react-hot-loader";
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {isLoggedIn: false};
-    }
+import MainPage from './MainPage';
+import LoginPage from './LoginPage';
 
-    render() {
+class App extends React.Component {
+     render() {
         return (
             <div className='App'>
-                <h1>Hello, World!</h1>
+                <Switch>
+                    <Redirect exact from='/' to='/dashboard' />
+                    <Route path='/dashboard'>
+                        <MainPage />
+                    </Route>
+                    <Route path='/login'>
+                        <LoginPage />
+                    </Route>
+                </Switch>
             </div>
         );
     }
