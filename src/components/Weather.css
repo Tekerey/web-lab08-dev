@@ -1,0 +1,53 @@
+.WeatherBlock {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.WeatherBlock-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.WeatherBlock-times td {
+    text-align: right;
+    padding: 0 5px;
+}
+
+.WeatherBlock-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 25px auto;
+}
+
+.WeatherDay {
+    margin: 10px 25px;
+}
+
+.WeatherDay div {
+    margin: 10px auto;
+}
+
+.WeatherDay-icon img {
+    height: 60px;
+}
+
+.WeatherDay-info {
+    text-align: left;
+    padding: 5px 0px;
+}
+
+.wind .dir {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin: 0 5px;
+    background: url(https://www.metaweather.com/static/img/windarrow.svg);
+    background-size: 100% 100%;
+}

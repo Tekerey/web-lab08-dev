@@ -38,9 +38,13 @@
     "presets": [
       "@babel/env",
       "@babel/preset-react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
     ]
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",

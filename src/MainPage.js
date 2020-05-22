@@ -1,24 +1,66 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
+import Cookies from './helpers/cookies';
+import './MainPage.css';
+import WeatherBlock from './components/WeatherBlock';
+import AuthService from './helpers/authService';
 
-export default class MainPage extends React.Component {
+class MainPage extends React.Component {
     constructor(props) {
         super(props);
+        this.handleLogout = this.handleLogout.bind(this);
+        this.state = {isLoaded: false};
     }
 
-    getCookie(name) {
-        let matches = document.cookie.match(new RegExp(
-          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
+    componentDidMount() {
+        AuthService.auth().then(
+            (isAuth) => {
+                if (!isAuth) {
+                    this.props.history.push('/login');
+                } else {
+                    this.content = <WeatherBlock />;
+                    this.setState({isLoaded: true});
+                }
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
+
+    handleLogout() {
+        Cookies.deleteCookie('token');
+        Cookies.deleteCookie('email');
+        Cookies.deleteCookie('login');
+        this.props.history.push('/login');
     }
 
     render() {
-        //Добавить отправку токена на сервер для проверки!!!
-        if (!this.getCookie('token')) {
+        if (!Cookies.getCookie('token')) {
             return <Redirect to='/login' />;
-        } else {
-            return <h1>Welcome!</h1>;
         }
+
+        if (!this.state.isLoaded) {
+            this.content = <div>Loading...</div>; // Add loader here
+        }
+
+        return (
+            <>
+                <header>
+                    <div className='Menu'>
+                        <h2>Weather</h2>
+                        <div>
+                            <span>{Cookies.getCookie('login')} | {Cookies.getCookie('email')}</span>
+                            <button className='LogoutButton' onClick={this.handleLogout}>Logout</button>
+                        </div>
+                    </div>
+                </header>
+                <div className='MainPage'>
+                    {this.content}
+                </div>
+            </>
+        );
     }
 }
+
+export default withRouter(MainPage);
