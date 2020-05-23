@@ -1,5 +1,5 @@
 .WeatherBlock {
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
     margin: auto 10px;
     text-align: center;
@@ -11,6 +11,10 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+.WeatherBlock-city {
+    font-size: 36px;
 }
 
 .WeatherBlock-times td {
@@ -27,7 +31,11 @@
 }
 
 .WeatherDay {
-    margin: 10px 25px;
+    margin: 10px 15px;
+}
+
+.WeatherDay-date {
+    font-size: 16px;
 }
 
 .WeatherDay div {
@@ -50,4 +58,31 @@
     margin: 0 5px;
     background: url(https://www.metaweather.com/static/img/windarrow.svg);
     background-size: 100% 100%;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.loader-container {
+    display: block;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.loader {
+    border: 8px solid lightgrey;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); border-top: 8px solid lightgrey; border-bottom: 16px solid dimgrey; }
+    20% { transform: rotate(0deg); border-top: 8px solid lightgrey; }
+    50% { border-top: 16px solid dimgrey; border-bottom: 8px solid lightgrey; }
+    80% { transform: rotate(0deg); border-bottom: 8px solid lightgrey; }
+    100% { transform: rotate(360deg); border-top: 8px solid lightgrey; border-bottom: 16px solid dimgrey; }
 }
