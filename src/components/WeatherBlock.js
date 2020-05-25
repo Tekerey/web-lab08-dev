@@ -1,6 +1,7 @@
 import React from 'react';
 import './Weather.css';
 import WeatherDay from './WeatherDay';
+import moment from 'moment';
 
 class WeatherBlock extends React.Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class WeatherBlock extends React.Component {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
                 this.setState({
                     isLoaded: true,
                     data: result
@@ -34,27 +34,33 @@ class WeatherBlock extends React.Component {
         if (error) {
             return <div className='ErrorMessage'>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div className='Loader'>Loading...</div>
+            return (
+                <div className='loader-container'>
+                    <div className='loader'></div>
+                </div>
+            );
         } else {
+            let i = 0;
             return (
                 <div className='WeatherBlock'>
-                    <h1>WeatherBlock</h1>
                     <div className='WeatherBlock-header'>
-                        <h2>{data.title}, {data.parent.title}</h2>
+                        <div>
+                            <span className='WeatherBlock-city'>{data.title}</span>, {data.parent.title}
+                        </div>
                         <div className='WeatherBlock-times'>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>Time</td>
-                                        <td>{data.time}</td>
+                                        <td className='bold'>Time</td>
+                                        <td>{moment(data.time).format('h:mm a')}</td>
                                     </tr>
                                     <tr>
-                                        <td>Sunrise</td>
-                                        <td>{data.sun_rise}</td>
+                                        <td className='bold'>Sunrise</td>
+                                        <td>{moment(data.sun_rise).format('h:mm a')}</td>
                                     </tr>
                                     <tr>
-                                        <td>Sunset</td>
-                                        <td>{data.sun_set}</td>
+                                        <td className='bold'>Sunset</td>
+                                        <td>{moment(data.sun_set).format('h:mm a')}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -62,7 +68,7 @@ class WeatherBlock extends React.Component {
                     </div>
                     <div className='WeatherBlock-body'>
                         {data.consolidated_weather.map(day => {
-                            return <WeatherDay key={day.id} day={day} />;
+                            return <WeatherDay key={i} id={i++} day={day} />;
                         })}
                     </div>
                 </div>

@@ -53,3 +53,34 @@ h2 {
     filter: brightness(1.1);
     box-shadow: none;
 }
+
+.FormBody label.inputLabel {
+    font-weight: bold;
+}
+
+.FormBody input {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 1px solid lightblue;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+    margin-bottom: 10px;
+}
+
+.FormBody input:focus {
+    border-bottom: 1px solid steelblue;
+}
+
+.FormBody input.error {
+    box-shadow: 0 0 0 2px red;
+}
+
+.errorInfo {
+    display: block;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: lightcoral;
+    color: whitesmoke;
+    border-radius: 7px;
+}

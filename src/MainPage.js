@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Cookies from './helpers/cookies';
 import './MainPage.css';
 import WeatherBlock from './components/WeatherBlock';
@@ -14,8 +14,8 @@ class MainPage extends React.Component {
 
     componentDidMount() {
         AuthService.auth().then(
-            (isAuth) => {
-                if (!isAuth) {
+            (res) => {
+                if (!res.isAuth) {
                     this.props.history.push('/login');
                 } else {
                     this.content = <WeatherBlock />;
@@ -23,32 +23,33 @@ class MainPage extends React.Component {
                 }
             },
             (err) => {
-                console.log(err);
+                this.content = <h3>Помилка: {err.message}</h3>;
+                this.setState({isLoaded: true});
             }
         );
     }
 
     handleLogout() {
-        Cookies.deleteCookie('token');
-        Cookies.deleteCookie('email');
-        Cookies.deleteCookie('login');
-        this.props.history.push('/login');
+        AuthService.logout().then(
+            () => this.props.history.push('/login'),
+            (error) => console.log(error)
+        );
     }
 
     render() {
-        if (!Cookies.getCookie('token')) {
-            return <Redirect to='/login' />;
-        }
-
         if (!this.state.isLoaded) {
-            this.content = <div>Loading...</div>; // Add loader here
+            this.content = (
+                <div className='loader-container'>
+                    <div className='loader'></div>
+                </div>
+            );
         }
 
         return (
             <>
                 <header>
                     <div className='Menu'>
-                        <h2>Weather</h2>
+                        <Link to='/'>Weather</Link>
                         <div>
                             <span>{Cookies.getCookie('login')} | {Cookies.getCookie('email')}</span>
                             <button className='LogoutButton' onClick={this.handleLogout}>Logout</button>
